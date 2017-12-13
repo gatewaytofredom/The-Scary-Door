@@ -5,14 +5,26 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var fadeQueue = 0;
 
 			setInterval(function() {
-				console.log("Hey server, I need me a button check")
+				//console.log("Hey server, I need me a button check")
+				console.log("FadeQueue is " + fadeQueue);
 
 				$.getJSON("/readPin/", function(data) {
-					console.log("Thanks.");
+					//console.log("Thanks.");
 					if (data["response"] != "not pressed") {
-						$("#main").html(data["screenout"])
+						fadeQueue++;
+						$("#main").html(data["screenout"]);
+						$("#main").fadeIn();
+
+						//fadeout
+						setTimeout(function() {
+							if (fadeQueue == 1) {
+								$("#main").fadeOut();
+							}
+							fadeQueue--;
+						}, 5000);
 						//$("#main").css("color", data["color"])
 					}
 				})
