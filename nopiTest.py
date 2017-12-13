@@ -1,11 +1,9 @@
 from flask import Flask,  render_template
 from random import randint
-import RPi.GPIO as GPIO
 import json
 
 app = Flask(__name__)
 
-GPIO.setmode(GPIO.BCM)
 
 @app.route("/")
 def hello():
@@ -14,18 +12,11 @@ def hello():
 
 @app.route("/readPin/")
 def readPin():
-  try:
-    GPIO.setup(int(23), GPIO.IN)
-    if GPIO.input(int(23)) == True:
-      response = randint(0,10)
-      if response <= 5:
-		    output="Nice"
-      else:
-		    output="Naughty"
-    else:
-      response = "not pressed"
-  except:
-	   response = "There was an error reading pin " + 23 + "."
+  response = randint(0,10)
+  if response <= 5:
+    output="Nice"
+  else:
+    output="Naughty"
 
   templateData = {
     'title' : 'Status of Pin' + str(23),

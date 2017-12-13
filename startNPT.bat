@@ -1,0 +1,2 @@
+python nopiTest.py
+pause

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>REEE</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			setInterval(function() {
+				console.log("Hey server, I need me a button check")
+
+				$.getJSON("/readPin/", function(data) {
+					console.log("Thanks.");
+					if (data["response"] != "not pressed") {
+						$("#main").html(data["screenout"])
+						//$("#main").css("color", data["color"])
+					}
+				})
+			}, 500);
+
+		});
+
+	</script>
+	<style>
+		#main {
+			font-size: 150px;
+			font: Arial;
+			color: lime;
+			
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+		}
+		* {
+			background-color: black;
+		}
+		.parent {
+			position: relative;
+			min-height: 100%;
+		}
+
+		html, body {
+            height: 100%;
+            margin: 0;
+        }
+	</style>
+</head>
+<body>
+	<div class="parent"><center id="main">Nice</center></div>
+</body>
+</html>
