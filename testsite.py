@@ -33,7 +33,7 @@ def readPin():
 	  'screenout' : output
       }
 
-    return render_template('nice.html', **templateData)
+    return json.dumps(templateData)
 
 
 if __name__ == "__main__":
