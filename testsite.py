@@ -19,13 +19,13 @@ def readPin():
     if GPIO.input(int(23)) == True:
       response = randint(0,10)
       if response <= 5:
-		    output="Nice"
+        output="Nice"
       else:
-		    output="Naughty"
+        output="Naughty"
     else:
       response = "not pressed"
   except:
-	   response = "There was an error reading pin " + 23 + "."
+     response = "There was an error reading pin " + 23 + "."
 
   templateData = {
     'title' : 'Status of Pin' + str(23),
@@ -38,8 +38,3 @@ def readPin():
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=125, debug=True)
-
-			
-			
-			
-			
