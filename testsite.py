@@ -14,6 +14,7 @@ def hello():
 
 @app.route("/readPin/")
 def readPin():
+  output = ''
   try:
     GPIO.setup(int(23), GPIO.IN)
     if GPIO.input(int(23)) == True:
